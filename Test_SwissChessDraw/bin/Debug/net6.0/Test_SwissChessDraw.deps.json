@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Test_SwissChessDraw/1.0.0": {
+        "dependencies": {
+          "SwissChessDraw": "1.0.0"
+        },
+        "runtime": {
+          "Test_SwissChessDraw.dll": {}
+        }
+      },
+      "SwissChessDraw/1.0.0": {
+        "runtime": {
+          "SwissChessDraw.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Test_SwissChessDraw/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SwissChessDraw/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

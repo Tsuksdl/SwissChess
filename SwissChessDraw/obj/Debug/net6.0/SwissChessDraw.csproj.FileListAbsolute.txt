@@ -1,0 +1,12 @@
+J:\SwissChessApp\SwissChessDraw\bin\Debug\net6.0\SwissChessDraw.deps.json
+J:\SwissChessApp\SwissChessDraw\bin\Debug\net6.0\SwissChessDraw.dll
+J:\SwissChessApp\SwissChessDraw\bin\Debug\net6.0\SwissChessDraw.pdb
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\SwissChessDraw.csproj.AssemblyReference.cache
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\SwissChessDraw.GeneratedMSBuildEditorConfig.editorconfig
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\SwissChessDraw.AssemblyInfoInputs.cache
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\SwissChessDraw.AssemblyInfo.cs
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\SwissChessDraw.csproj.CoreCompileInputs.cache
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\SwissChessDraw.dll
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\refint\SwissChessDraw.dll
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\SwissChessDraw.pdb
+J:\SwissChessApp\SwissChessDraw\obj\Debug\net6.0\ref\SwissChessDraw.dll

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissChessDraw", "SwissChessDraw.csproj", "{42D5C8D0-AA19-4673-AADA-3E449816516A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_SwissChessDraw", "..\Test_SwissChessDraw\Test_SwissChessDraw.csproj", "{393A0989-156A-4B5C-A97D-C627F888FB02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42D5C8D0-AA19-4673-AADA-3E449816516A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D5C8D0-AA19-4673-AADA-3E449816516A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D5C8D0-AA19-4673-AADA-3E449816516A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D5C8D0-AA19-4673-AADA-3E449816516A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{393A0989-156A-4B5C-A97D-C627F888FB02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393A0989-156A-4B5C-A97D-C627F888FB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393A0989-156A-4B5C-A97D-C627F888FB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393A0989-156A-4B5C-A97D-C627F888FB02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC9C7055-F5E4-45ED-9D4C-F4A7AD1B40F8}
+	EndGlobalSection
+EndGlobal
