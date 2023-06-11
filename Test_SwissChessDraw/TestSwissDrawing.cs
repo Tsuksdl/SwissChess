@@ -1,9 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SwissChessDraw;
 
 namespace Test_SwissChessDraw
 {
@@ -11,9 +7,9 @@ namespace Test_SwissChessDraw
   internal class TestSwissDrawing
   {
     [Test]
-    public void TestSimple5Round ()
+    public void Test_CreatFloater()
     {
-
+      List<IPlayerData> playerDatas = new List<IPlayerData>();
     }
   }
 }
