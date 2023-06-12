@@ -7,4 +7,8 @@
     <Configurations>Debug;Release;TestRun</Configurations>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DrawBase\DrawBase.csproj" />
+  </ItemGroup>
+
 </Project>

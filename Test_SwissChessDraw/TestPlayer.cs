@@ -30,7 +30,7 @@ namespace Test_SwissChessDraw
 
     public int LastFloatCount { get; set; }
 
-    public List<Guid> LastPairings { get; }
+    public List<Guid> LastPairings { get; private set; }
 
     public Guid PlayerID { get; set; }
 
@@ -44,7 +44,42 @@ namespace Test_SwissChessDraw
 
     void IXMLObjekt.LoadInformation(XMLReader reader)
     {
+      if (reader.ReadAttribute(nameof(ColorDifferenz)) is string colorDifferenzString)
+      {
+        ColorDifferenz = int.Parse(colorDifferenzString);
+      }
 
+      if (reader.ReadAttribute(nameof(LastColor)) is string lastColorString)
+      {
+        LastColor = bool.Parse(lastColorString);
+      }
+
+      if (reader.ReadAttribute(nameof(LastFloatCount)) is string lastFloatCountString)
+      {
+        LastFloatCount = int.Parse(lastFloatCountString);
+      }
+
+      if (reader.ReadAttribute(nameof(LastColorCount)) is string lastColorCountString)
+      {
+        LastColorCount = int.Parse(lastColorCountString);
+      }
+
+      if (reader.ReadAttribute(nameof(PlayerID)) is string playerIDString)
+      {
+        PlayerID = new Guid(playerIDString);
+      }
+
+      if (reader.ReadAttribute(nameof(Points)) is string pointsString)
+      {
+        Points = float.Parse(pointsString);
+      }
+
+      if (reader.ReadAttribute(nameof(usedFreePoint)) is string usedFreePointString)
+      {
+        usedFreePoint = bool.Parse(usedFreePointString);
+      }
+
+      LastPairings = reader.ReadGuidList();
     }
 
     #endregion Public Methods

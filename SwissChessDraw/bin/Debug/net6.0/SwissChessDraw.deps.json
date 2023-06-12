@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "SwissChessDraw/1.0.0": {
+        "dependencies": {
+          "DrawBase": "1.0.0"
+        },
         "runtime": {
           "SwissChessDraw.dll": {}
+        }
+      },
+      "DrawBase/1.0.0": {
+        "runtime": {
+          "DrawBase.dll": {}
         }
       }
     }
   },
   "libraries": {
     "SwissChessDraw/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DrawBase/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
