@@ -19,4 +19,10 @@
     <ProjectReference Include="..\SwissChessDraw\SwissChessDraw.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestCases\TestLoadPlayer.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

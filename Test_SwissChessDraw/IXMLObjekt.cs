@@ -1,5 +1,8 @@
 ﻿namespace Test_SwissChessDraw
 {
+  /// <summary>
+  /// Default interface to make a Objekt loadable as list with the XML-reader 
+  /// </summary>
   internal interface IXMLObjekt
   {
     #region Public Methods
