@@ -1,3 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true">
-</Player>
+<Test>
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="5002fa48-561c-4019-8978-d61679e48355" StartPosition="01" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="040d075b-f00b-40fe-905e-b6fff883ed7e" StartPosition="02" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="4e238454-1589-4c19-8d40-2373bef3c732" StartPosition="03" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="be3ec123-ad59-453f-8475-ab9b813d7177" StartPosition="04" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="61ec7881-0ecd-4986-9d6b-5c501b166586" StartPosition="05" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="021a1f7e-f928-461f-9f7a-2bde5d738826" StartPosition="06" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="147fb81c-d003-48a2-85d3-f9d5682b047f" StartPosition="07" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="badbf702-5108-45de-9ab1-d88210d9f305" StartPosition="08" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="1e21dd1a-9f05-49c7-8295-797088cc5072" StartPosition="09" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="5896623e-f891-49d2-a1d7-0ba6b5a219ce" StartPosition="10" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="a1175b79-99c1-4bab-bd03-a6ce44a4cb6a" StartPosition="11" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="2219e23b-746e-48fa-86b0-7f4c90336cf4" StartPosition="12" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="fb3a9f21-4eb5-4831-be58-4805f58cdf31" StartPosition="13" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="f7493e5f-cdd7-44b7-be7e-4de83c429e0f" StartPosition="14" />
+	<Player Points="1" usedFreePoint="true" LastColorCount="1" LastColor="true" PlayerID="fb3b7784-ece4-4070-935e-e46108266fde" StartPosition="15" />
+
+	<Round Round="1">
+		<Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="false">
+			/*1*/
+			<Player PlayerID="badbf702-5108-45de-9ab1-d88210d9f305" />
+			<Player PlayerID="5002fa48-561c-4019-8978-d61679e48355" />
+		</Pairing>
+		<Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="false">
+			/*2*/
+			<Player PlayerID="040d075b-f00b-40fe-905e-b6fff883ed7e" />
+			<Player PlayerID="1e21dd1a-9f05-49c7-8295-797088cc5072" />
+		</Pairing>
+		<Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="false">
+			/*3*/
+			<Player PlayerID="5896623e-f891-49d2-a1d7-0ba6b5a219ce" />
+			<Player PlayerID="4e238454-1589-4c19-8d40-2373bef3c732" />
+		</Pairing>
+		<Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="false">
+			/*4*/
+			<Player PlayerID="be3ec123-ad59-453f-8475-ab9b813d7177" />
+			<Player PlayerID="a1175b79-99c1-4bab-bd03-a6ce44a4cb6a" />
+		</Pairing>
+		<Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="false">
+			/*5*/
+			<Player PlayerID="2219e23b-746e-48fa-86b0-7f4c90336cf4" />
+			<Player PlayerID="61ec7881-0ecd-4986-9d6b-5c501b166586" />
+		</Pairing>
+		<Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="false">
+			/*6*/
+			<Player PlayerID="021a1f7e-f928-461f-9f7a-2bde5d738826" />
+			<Player PlayerID="fb3a9f21-4eb5-4831-be58-4805f58cdf31" />
+		</Pairing>
+		<Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="false">
+			/*7*/
+			<Player PlayerID="f7493e5f-cdd7-44b7-be7e-4de83c429e0f" />
+			<Player PlayerID="147fb81c-d003-48a2-85d3-f9d5682b047f" />
+		</Pairing>
+		<Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="true">
+			/*8*/
+			<Player PlayerID="fb3b7784-ece4-4070-935e-e46108266fde" />
+			<Player PlayerID="00000000-0000-0000-0000-000000000000" />
+		</Pairing>
+	</Round>
+</Test>

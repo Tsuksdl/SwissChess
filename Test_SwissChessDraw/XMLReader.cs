@@ -44,9 +44,10 @@ namespace Test_SwissChessDraw
     /// </param>
     public void ReadList<T>(ref IList<T> collection, string nodeName = "") where T : IXMLObjekt
     {
-      if (_reader != null)
+      if (_aktiveNode != null)
       {
-        foreach (XmlNode node in _reader.ChildNodes)
+        XmlNode baseNode = _aktiveNode;
+        foreach (XmlNode node in _aktiveNode.ChildNodes)
         {
           _aktiveNode = node;
           if (node.Name.Contains(nodeName))
@@ -59,6 +60,7 @@ namespace Test_SwissChessDraw
             }
           }
         }
+        _aktiveNode = baseNode;
       }
     }
 
@@ -73,6 +75,7 @@ namespace Test_SwissChessDraw
       {
         _reader = new XmlDocument();
         _reader.Load(filePath);
+        _aktiveNode = _reader.ChildNodes.Count > 0 ? _reader.ChildNodes[1] : null;
         return true;
       }
       catch

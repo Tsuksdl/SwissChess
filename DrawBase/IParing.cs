@@ -6,7 +6,7 @@ namespace DrawBase
   /// Base Interface for one pairing in a round. Holds the information about the two players/teams
   /// and there points.
   /// </summary>
-  public interface IParing
+  public interface IPairing
   {
     /// <summary>
     /// The white player or the home team.

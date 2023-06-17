@@ -14,7 +14,7 @@ namespace DrawBase
     /// </summary>
     /// <param name="player">List of players to pair in this round</param>
     /// <returns>List of the pairings resulting form the drawing.</returns>
-    public List<IParing> CreateNewRound(List<IPlayerData> player);
+    public List<IPairing> CreateNewRound(List<IPlayerData> player);
 
     #endregion Public Methods
   }

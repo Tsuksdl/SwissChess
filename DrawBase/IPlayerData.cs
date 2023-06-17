@@ -44,6 +44,11 @@
     public float Points { get; set; }
 
     /// <summary>
+    /// Position of this player in the start sorting.
+    /// </summary>
+    public int StartPosition { get; set; }
+
+    /// <summary>
     /// Flag to hold the information about the free points from a free game.
     /// </summary>
     public bool usedFreePoint { get; set; }
