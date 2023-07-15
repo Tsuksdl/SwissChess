@@ -2,7 +2,7 @@
 
 namespace DisplayBase
 {
-  public interface IDisplayPlayerData : IPlayerData 
+  public interface IDisplayPlayerData : IPlayerData
   {
     /// <summary>
     /// Name of the player to display
@@ -13,6 +13,11 @@ namespace DisplayBase
     /// Club for whom the player is playing
     /// </summary>
     string Club { get; set; }
+
+    /// <summary>
+    /// Title of the player like (GM, Fm, WG, etc.)
+    /// </summary>
+    string Title { get; set; }
 
     /// <summary>
     /// Offical ELO of the player determind by the FIDE
@@ -38,7 +43,7 @@ namespace DisplayBase
     string zps { get; set; }
 
     /// <summary>
-    /// Club identification Number 
+    /// Club identification Number
     /// </summary>
     float ClubIdentificationNumber { get; set; }
 

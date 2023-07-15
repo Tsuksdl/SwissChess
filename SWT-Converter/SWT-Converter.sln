@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWT-Converter", "SWT-Converter\SWT-Converter.csproj", "{936762F9-8F8B-4925-91AB-199F1F81D37E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWT-Converter", "SWT-Converter\SWT-Converter.csproj", "{936762F9-8F8B-4925-91AB-199F1F81D37E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrawBase", "..\DrawBase\DrawBase.csproj", "{79D3674E-6573-4CE6-8A39-85FF32FCB619}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisplayBase", "..\DisplayBase\DisplayBase.csproj", "{27CF2DD3-4414-403E-AF3B-3D80B397D4E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{79D3674E-6573-4CE6-8A39-85FF32FCB619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79D3674E-6573-4CE6-8A39-85FF32FCB619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79D3674E-6573-4CE6-8A39-85FF32FCB619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27CF2DD3-4414-403E-AF3B-3D80B397D4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CF2DD3-4414-403E-AF3B-3D80B397D4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CF2DD3-4414-403E-AF3B-3D80B397D4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CF2DD3-4414-403E-AF3B-3D80B397D4E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

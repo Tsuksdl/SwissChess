@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using SwissChessDraw;
+using DisplayBase;
 using SWT_Converter.SWT_Convert;
 
 string path = @"C:\Users\fritz\OneDrive\Documents\Chess\Super_Cup\2023_Duatlon\Duathlon.SWT";
@@ -13,9 +13,9 @@ Console.WriteLine($"Read Turnementtype: {reader.ReadInt(606, 1)}");
 
 int aktuelle_runde = reader.ReadInt(3, 2);
 int modus = reader.ReadInt(596, 1);
+int offset;
 int aktueller_durchgang = reader.ReadInt(598, 1);
 int anz_teilnehmer = reader.ReadInt(7, 2);
-int offset = 0;
 int anz_runden = reader.ReadInt(1, 2);
 int anz_durchgaenge = reader.ReadInt(599, 1);
 
@@ -39,7 +39,7 @@ Console.WriteLine($"Offset: {offset} ");
 
 for (int i = 0; i < anz_teilnehmer; i++)
 {
-  IPlayerData teilnehmer = new Player_SWT_Converter();
+  IDisplayPlayerData teilnehmer = new Player_SWT_Converter();
 
   if (reader.ReadInt(offset + 189, 1) == 102)
   {
@@ -47,44 +47,75 @@ for (int i = 0; i < anz_teilnehmer; i++)
   }
   else
   {
-				$teilnehmer->set('name', CLMSWT::readName($swt,$offset, 32));
-				$teilnehmer->set('verein', CLMSWT::readName($swt,$offset + 33, 32));
-				$teilnehmer->set('title', CLMSWT::readName($swt,$offset + 66, 3));
-				$teilnehmer->set('FIDEelo', CLMSWT::readName($swt,$offset + 70, 4));
-				$teilnehmer->set('start_dwz', CLMSWT::readName($swt,$offset + 75, 4));
-				$teilnehmer->set('FIDEcco', CLMSWT::readName($swt,$offset + 105, 3));
-				$teilnehmer->set('NATcco', CLMSWT::readName($swt,$offset + 109, 3));
-				$teilnehmer->set('birthYear', CLMSWT::readName($swt,$offset + 128, 4));
-				$teilnehmer->set('zps', CLMSWT::readName($swt,$offset + 153, 5));
-				$teilnehmer->set('mgl_nr', CLMSWT::readName($swt,$offset + 159, 4));
-				$teilnehmer->set('geschlecht', CLMSWT::readName($swt,$offset + 184, 1));
-				$teilnehmer->set('tlnrStatus', (CLMSWT::readName($swt,$offset + 184, 1) == "*" ? "0" : "1"));
-    if ($modus == 3 OR $modus == 5) $teilnehmer->set('tlnrStatus', 1);
-				$teilnehmer->set('FIDEid', CLMSWT::readName($swt,$offset + 324, 12));
+    teilnehmer.Name = reader.ReadString(offset, 32);
+    teilnehmer.Club = reader.ReadString(offset + 33, 32);
+    teilnehmer.Title = reader.ReadString(offset + 66, 3);
+    teilnehmer.FIDE_Elo = float.Parse(reader.ReadString(offset + 70, 4));
+    teilnehmer.Start_NVZ = float.Parse(reader.ReadString(offset + 75, 4));
+    teilnehmer.FIDE_cco = float.Parse(reader.ReadString(offset + 105, 3));
+    teilnehmer.NAT_cco = float.Parse(reader.ReadString(offset + 109, 3));
+    teilnehmer.Birthyear = reader.ReadInt(offset + 128, 4);
+    teilnehmer.zps = reader.ReadString(offset + 153, 5);
+    teilnehmer.ClubIdentificationNumber = float.Parse(reader.ReadString(offset + 159, 4));
+    teilnehmer.Gender = reader.ReadString(offset + 184, 1);
+    teilnehmer.PlayerStatus = reader.ReadString(offset + 184, 1) == "*" ? "0" : "1";
 
-				$s_points = CLMSWT::readInt($swt,$offset + 273, 1);
-				$s_sign = CLMSWT::readInt($swt,$offset + 274, 1);
-if ($s_sign == 255) $s_points = ($s_points - 256);
-				$s_punkte = strval($s_points / 2);
-				$teilnehmer->set('s_punkte', $s_punkte);
+    if (modus == 3 || modus == 5)
+    {
+      teilnehmer.PlayerStatus = "1";
+    }
 
-//TWZ-Bestimmen
-if ($useAsTWZ == 0) {
-  if ($teilnehmer->FIDEelo >= $teilnehmer->start_dwz) { $teilnehmer->set('twz', $teilnehmer->FIDEelo); }
-          else { $teilnehmer->set('twz', $teilnehmer->start_dwz); }
-}
-elseif($useAsTWZ == 1) {
-  if ($teilnehmer->start_dwz > 0) { $teilnehmer->set('twz', $teilnehmer->start_dwz); }
-          else { $teilnehmer->set('twz', $teilnehmer->FIDEelo); }
-}
-elseif($useAsTWZ == 2) {
-  if ($teilnehmer->FIDEelo > 0) { $teilnehmer->set('twz', $teilnehmer->FIDEelo); }
-          else { $teilnehmer->set('twz', $teilnehmer->start_dwz); }
-}
+    teilnehmer.FideID = reader.ReadInt(offset + 324, 12);
 
-// Geschlecht korrigieren
-// Keine Angabe = Männlich
-if ($teilnehmer->geschlecht == " ") {
-					$teilnehmer->set('geschlecht', "M", 1);
-}
+    int s_points = reader.ReadInt(offset + 273, 1);
+    int s_sign = reader.ReadInt(offset + 274, 1);
+    if (s_sign == 255)
+    {
+      s_points = (s_points - 256);
+    }
+    float s_punkte = s_points / 2;
+    teilnehmer.Points = s_punkte;
+
+    //TWZ-Bestimmen
+    if (useAsTWZ == 0)
+    {
+      if (teilnehmer.FIDE_Elo >= teilnehmer.Start_NVZ)
+      {
+        teilnehmer.TVN = teilnehmer.FIDE_Elo;
+      }
+      else
+      {
+        teilnehmer.TVN = teilnehmer.Start_NVZ;
+      }
+    }
+    else if (useAsTWZ == 1)
+    {
+      if (teilnehmer.Start_NVZ > 0)
+      {
+        teilnehmer.TVN = teilnehmer.Start_NVZ;
+      }
+      else
+      {
+        teilnehmer.TVN = teilnehmer.FIDE_Elo;
+      }
+    }
+    else if (useAsTWZ == 2)
+    {
+      if (teilnehmer.FIDE_Elo > 0)
+      {
+        teilnehmer.TVN = teilnehmer.FIDE_Elo;
+      }
+      else
+      {
+        teilnehmer.TVN = teilnehmer.Start_NVZ;
+      }
+    }
+
+    // Geschlecht korrigieren
+    // Keine Angabe = Männlich
+    if (teilnehmer.Gender == string.Empty || teilnehmer.Gender == " ")
+    {
+      teilnehmer.Gender = "M";
+    }
   }
+}
