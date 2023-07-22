@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,19 +11,19 @@ namespace SWT_Converter.SWT_Convert
   {
     private StreamReader? reader;
 
-    public SWTBaseReader ()
+    public SWTBaseReader()
     {
       reader = null;
     }
 
-    public bool OpenFile (string path)
+    public bool OpenFile(string path)
     {
-      if (!File.Exists (path))
+      if (!File.Exists(path))
       {
         return false;
       }
 
-      reader = new StreamReader (path);
+      reader = new StreamReader(path);
       return true;
     }
 
@@ -32,24 +33,25 @@ namespace SWT_Converter.SWT_Convert
     /// <param name="offset">Position of the Char in the file</param>
     /// <param name="length">Amount of chars to read from the file</param>
     /// <returns>Empty if no read was possible!</returns>
-    public string ReadString (int offset, int length = 1)
+    public string ReadString(int offset, int length = 1)
     {
       if (reader == null || length < 1)
       {
         return String.Empty;
       }
 
-      char[] resultChars = new char[length];
+      byte[] resultChars = new byte[length];
       try
       {
-        reader.Read(resultChars, offset, length);
+        reader.BaseStream.Position = offset;
+        reader.BaseStream.Read(resultChars, 0, length);
       }
       catch
       {
         return String.Empty;
       }
 
-      return new string(resultChars);
+      return BitConverter.ToString(resultChars);
     }
 
     /// <summary>
@@ -58,7 +60,7 @@ namespace SWT_Converter.SWT_Convert
     /// <param name="offset">Position of the Char in the file</param>
     /// <param name="length">Amount of chars to read from the file</param>
     /// <returns> -1 if no read was Possible</returns>
-    public int ReadInt (int offset, int length = 1)
+    public int ReadInt(int offset, int length = 1)
     {
       if (reader == null || length < 1)
       {
@@ -79,7 +81,7 @@ namespace SWT_Converter.SWT_Convert
       int result = 0;
       int i = 0;
 
-      foreach(byte c in resultChars)
+      foreach (byte c in resultChars)
       {
         result += (int)(c * Math.Pow(265, i));
         i++;
