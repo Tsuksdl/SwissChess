@@ -29,7 +29,7 @@ namespace Test_SwissChessDraw
     {
       if (_aktiveNode != null)
       {
-        return _aktiveNode.Attributes?.Cast<XmlAttribute>()?.ToList()?.FirstOrDefault(att => att.Name.Equals(attributeName))?.InnerText;
+        return _aktiveNode.Attributes?.GetNamedItem(attributeName)?.Value;
       }
       return null;
     }
@@ -42,12 +42,12 @@ namespace Test_SwissChessDraw
     /// <param name="nodeName">
     /// Name of the nodes to use to read the element T from. If empty alle nodes are used.
     /// </param>
-    public void ReadList<T>(ref IList<T> collection, string nodeName = "") where T : IXMLObjekt
+    public void ReadList<T>(ref IList<T> collection, object? args, string nodeName = "") where T : IXMLObjekt
     {
       if (_aktiveNode != null)
       {
         XmlNode baseNode = _aktiveNode;
-        foreach (XmlNode node in _aktiveNode.ChildNodes)
+        foreach (XmlNode node in baseNode.ChildNodes)
         {
           _aktiveNode = node;
           if (node.Name.Contains(nodeName))
@@ -55,7 +55,7 @@ namespace Test_SwissChessDraw
             var nextElement = Activator.CreateInstance(typeof(T));
             if (nextElement is T nextTElement)
             {
-              nextTElement.LoadInformation(this);
+              nextTElement.Load(this, args);
               collection.Add(nextTElement);
             }
           }

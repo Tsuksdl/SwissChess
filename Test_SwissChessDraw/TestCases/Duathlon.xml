@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Test>
+  <Player PlayerID="dc7f892f-1f98-4698-a419-ae4f5cb3063d" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>ec6f04b1-6c8d-4fef-8e42-523d6ee1560d</GUID>
+    <GUID>66951e57-5f6b-4d35-afd5-fa783a4f0670</GUID>
+    <GUID>b3b6bd09-e9e3-451b-95a6-8176d5f8d21f</GUID>
+    <GUID>64118ef5-3784-4344-9c2f-9eb9cf92bbb3</GUID>
+    <GUID>c08dbed5-a5a0-4ea1-b169-5b109e7814d0</GUID>
+  </Player>
+  <Player PlayerID="c08dbed5-a5a0-4ea1-b169-5b109e7814d0" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>ddb68730-59f2-4a04-804b-d8ee77dbd6ff</GUID>
+    <GUID>05577d15-f195-4b9b-8d19-33531e08b21e</GUID>
+    <GUID>64118ef5-3784-4344-9c2f-9eb9cf92bbb3</GUID>
+    <GUID>dfe021ec-5540-4c82-9984-5e22ef77c2e6</GUID>
+    <GUID>dc7f892f-1f98-4698-a419-ae4f5cb3063d</GUID>
+  </Player>
+  <Player PlayerID="b3b6bd09-e9e3-451b-95a6-8176d5f8d21f" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>dfe021ec-5540-4c82-9984-5e22ef77c2e6</GUID>
+    <GUID>20827935-3492-4750-808a-17c0867d9508</GUID>
+    <GUID>dc7f892f-1f98-4698-a419-ae4f5cb3063d</GUID>
+    <GUID>05577d15-f195-4b9b-8d19-33531e08b21e</GUID>
+    <GUID>64118ef5-3784-4344-9c2f-9eb9cf92bbb3</GUID>
+  </Player>
+  <Player PlayerID="634ac478-e2d8-4d42-87ae-c95c311c4295" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>05577d15-f195-4b9b-8d19-33531e08b21e</GUID>
+    <GUID>dfe021ec-5540-4c82-9984-5e22ef77c2e6</GUID>
+    <GUID>ddb68730-59f2-4a04-804b-d8ee77dbd6ff</GUID>
+    <GUID>198ab55d-85aa-4f5a-aed4-260672d08807</GUID>
+    <GUID>20827935-3492-4750-808a-17c0867d9508</GUID>
+  </Player>
+  <Player PlayerID="64118ef5-3784-4344-9c2f-9eb9cf92bbb3" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>198ab55d-85aa-4f5a-aed4-260672d08807</GUID>
+    <GUID>81a2c929-46bf-4985-ad07-14c5b0de80bb</GUID>
+    <GUID>c08dbed5-a5a0-4ea1-b169-5b109e7814d0</GUID>
+    <GUID>dc7f892f-1f98-4698-a419-ae4f5cb3063d</GUID>
+    <GUID>b3b6bd09-e9e3-451b-95a6-8176d5f8d21f</GUID>
+  </Player>
+  <Player PlayerID="66951e57-5f6b-4d35-afd5-fa783a4f0670" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1</GUID>
+    <GUID>dc7f892f-1f98-4698-a419-ae4f5cb3063d</GUID>
+    <GUID>198ab55d-85aa-4f5a-aed4-260672d08807</GUID>
+    <GUID>20827935-3492-4750-808a-17c0867d9508</GUID>
+    <GUID>dfe021ec-5540-4c82-9984-5e22ef77c2e6</GUID>
+  </Player>
+  <Player PlayerID="f03f2a25-7aef-479f-9480-55329d7b838a" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>20827935-3492-4750-808a-17c0867d9508</GUID>
+    <GUID>198ab55d-85aa-4f5a-aed4-260672d08807</GUID>
+    <GUID>f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1</GUID>
+    <GUID>4fc07d37-4930-4b2b-846a-fda60657d97f</GUID>
+    <GUID>81a2c929-46bf-4985-ad07-14c5b0de80bb</GUID>
+  </Player>
+  <Player PlayerID="ec6f04b1-6c8d-4fef-8e42-523d6ee1560d" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>dc7f892f-1f98-4698-a419-ae4f5cb3063d</GUID>
+    <GUID>f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1</GUID>
+    <GUID>20827935-3492-4750-808a-17c0867d9508</GUID>
+    <GUID>81a2c929-46bf-4985-ad07-14c5b0de80bb</GUID>
+    <GUID>05577d15-f195-4b9b-8d19-33531e08b21e</GUID>
+  </Player>
+  <Player PlayerID="ddb68730-59f2-4a04-804b-d8ee77dbd6ff" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>c08dbed5-a5a0-4ea1-b169-5b109e7814d0</GUID>
+    <GUID>4fc07d37-4930-4b2b-846a-fda60657d97f</GUID>
+    <GUID>634ac478-e2d8-4d42-87ae-c95c311c4295</GUID>
+    <GUID>f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1</GUID>
+    <GUID>198ab55d-85aa-4f5a-aed4-260672d08807</GUID>
+  </Player>
+  <Player PlayerID="dfe021ec-5540-4c82-9984-5e22ef77c2e6" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>b3b6bd09-e9e3-451b-95a6-8176d5f8d21f</GUID>
+    <GUID>634ac478-e2d8-4d42-87ae-c95c311c4295</GUID>
+    <GUID>4fc07d37-4930-4b2b-846a-fda60657d97f</GUID>
+    <GUID>c08dbed5-a5a0-4ea1-b169-5b109e7814d0</GUID>
+    <GUID>66951e57-5f6b-4d35-afd5-fa783a4f0670</GUID>
+  </Player>
+  <Player PlayerID="05577d15-f195-4b9b-8d19-33531e08b21e" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>634ac478-e2d8-4d42-87ae-c95c311c4295</GUID>
+    <GUID>c08dbed5-a5a0-4ea1-b169-5b109e7814d0</GUID>
+    <GUID>81a2c929-46bf-4985-ad07-14c5b0de80bb</GUID>
+    <GUID>b3b6bd09-e9e3-451b-95a6-8176d5f8d21f</GUID>
+    <GUID>ec6f04b1-6c8d-4fef-8e42-523d6ee1560d</GUID>
+  </Player>
+  <Player PlayerID="198ab55d-85aa-4f5a-aed4-260672d08807" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>64118ef5-3784-4344-9c2f-9eb9cf92bbb3</GUID>
+    <GUID>f03f2a25-7aef-479f-9480-55329d7b838a</GUID>
+    <GUID>66951e57-5f6b-4d35-afd5-fa783a4f0670</GUID>
+    <GUID>634ac478-e2d8-4d42-87ae-c95c311c4295</GUID>
+    <GUID>ddb68730-59f2-4a04-804b-d8ee77dbd6ff</GUID>
+  </Player>
+  <Player PlayerID="f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>66951e57-5f6b-4d35-afd5-fa783a4f0670</GUID>
+    <GUID>ec6f04b1-6c8d-4fef-8e42-523d6ee1560d</GUID>
+    <GUID>f03f2a25-7aef-479f-9480-55329d7b838a</GUID>
+    <GUID>ddb68730-59f2-4a04-804b-d8ee77dbd6ff</GUID>
+    <GUID>4fc07d37-4930-4b2b-846a-fda60657d97f</GUID>
+  </Player>
+  <Player PlayerID="20827935-3492-4750-808a-17c0867d9508" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>f03f2a25-7aef-479f-9480-55329d7b838a</GUID>
+    <GUID>b3b6bd09-e9e3-451b-95a6-8176d5f8d21f</GUID>
+    <GUID>ec6f04b1-6c8d-4fef-8e42-523d6ee1560d</GUID>
+    <GUID>66951e57-5f6b-4d35-afd5-fa783a4f0670</GUID>
+    <GUID>634ac478-e2d8-4d42-87ae-c95c311c4295</GUID>
+  </Player>
+  <Player PlayerID="4fc07d37-4930-4b2b-846a-fda60657d97f" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>81a2c929-46bf-4985-ad07-14c5b0de80bb</GUID>
+    <GUID>ddb68730-59f2-4a04-804b-d8ee77dbd6ff</GUID>
+    <GUID>dfe021ec-5540-4c82-9984-5e22ef77c2e6</GUID>
+    <GUID>f03f2a25-7aef-479f-9480-55329d7b838a</GUID>
+    <GUID>f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1</GUID>
+  </Player>
+  <Player PlayerID="81a2c929-46bf-4985-ad07-14c5b0de80bb" ColorDifferenz="0" LastFloatCount="0" LastColorCount="0" StartPosition="0" Points="0" usedFreePoint="True">
+    <GUID>4fc07d37-4930-4b2b-846a-fda60657d97f</GUID>
+    <GUID>64118ef5-3784-4344-9c2f-9eb9cf92bbb3</GUID>
+    <GUID>05577d15-f195-4b9b-8d19-33531e08b21e</GUID>
+    <GUID>ec6f04b1-6c8d-4fef-8e42-523d6ee1560d</GUID>
+    <GUID>f03f2a25-7aef-479f-9480-55329d7b838a</GUID>
+  </Player>
+  <Round Rounde="0">
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="ec6f04b1-6c8d-4fef-8e42-523d6ee1560d" />
+      <Player PlayerID="dc7f892f-1f98-4698-a419-ae4f5cb3063d" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="c08dbed5-a5a0-4ea1-b169-5b109e7814d0" />
+      <Player PlayerID="ddb68730-59f2-4a04-804b-d8ee77dbd6ff" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="dfe021ec-5540-4c82-9984-5e22ef77c2e6" />
+      <Player PlayerID="b3b6bd09-e9e3-451b-95a6-8176d5f8d21f" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="634ac478-e2d8-4d42-87ae-c95c311c4295" />
+      <Player PlayerID="05577d15-f195-4b9b-8d19-33531e08b21e" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="198ab55d-85aa-4f5a-aed4-260672d08807" />
+      <Player PlayerID="64118ef5-3784-4344-9c2f-9eb9cf92bbb3" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="66951e57-5f6b-4d35-afd5-fa783a4f0670" />
+      <Player PlayerID="f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="20827935-3492-4750-808a-17c0867d9508" />
+      <Player PlayerID="f03f2a25-7aef-479f-9480-55329d7b838a" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="4fc07d37-4930-4b2b-846a-fda60657d97f" />
+      <Player PlayerID="81a2c929-46bf-4985-ad07-14c5b0de80bb" />
+    </Pairing>
+  </Round>
+  <Round Rounde="1">
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="dc7f892f-1f98-4698-a419-ae4f5cb3063d" />
+      <Player PlayerID="66951e57-5f6b-4d35-afd5-fa783a4f0670" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="05577d15-f195-4b9b-8d19-33531e08b21e" />
+      <Player PlayerID="c08dbed5-a5a0-4ea1-b169-5b109e7814d0" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="b3b6bd09-e9e3-451b-95a6-8176d5f8d21f" />
+      <Player PlayerID="20827935-3492-4750-808a-17c0867d9508" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="64118ef5-3784-4344-9c2f-9eb9cf92bbb3" />
+      <Player PlayerID="81a2c929-46bf-4985-ad07-14c5b0de80bb" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="dfe021ec-5540-4c82-9984-5e22ef77c2e6" />
+      <Player PlayerID="634ac478-e2d8-4d42-87ae-c95c311c4295" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="f03f2a25-7aef-479f-9480-55329d7b838a" />
+      <Player PlayerID="198ab55d-85aa-4f5a-aed4-260672d08807" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1" />
+      <Player PlayerID="ec6f04b1-6c8d-4fef-8e42-523d6ee1560d" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="ddb68730-59f2-4a04-804b-d8ee77dbd6ff" />
+      <Player PlayerID="4fc07d37-4930-4b2b-846a-fda60657d97f" />
+    </Pairing>
+  </Round>
+  <Round Rounde="2">
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="b3b6bd09-e9e3-451b-95a6-8176d5f8d21f" />
+      <Player PlayerID="dc7f892f-1f98-4698-a419-ae4f5cb3063d" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="c08dbed5-a5a0-4ea1-b169-5b109e7814d0" />
+      <Player PlayerID="64118ef5-3784-4344-9c2f-9eb9cf92bbb3" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="66951e57-5f6b-4d35-afd5-fa783a4f0670" />
+      <Player PlayerID="198ab55d-85aa-4f5a-aed4-260672d08807" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="ec6f04b1-6c8d-4fef-8e42-523d6ee1560d" />
+      <Player PlayerID="20827935-3492-4750-808a-17c0867d9508" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="4fc07d37-4930-4b2b-846a-fda60657d97f" />
+      <Player PlayerID="dfe021ec-5540-4c82-9984-5e22ef77c2e6" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="81a2c929-46bf-4985-ad07-14c5b0de80bb" />
+      <Player PlayerID="05577d15-f195-4b9b-8d19-33531e08b21e" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="634ac478-e2d8-4d42-87ae-c95c311c4295" />
+      <Player PlayerID="ddb68730-59f2-4a04-804b-d8ee77dbd6ff" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1" />
+      <Player PlayerID="f03f2a25-7aef-479f-9480-55329d7b838a" />
+    </Pairing>
+  </Round>
+  <Round Rounde="3">
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="dc7f892f-1f98-4698-a419-ae4f5cb3063d" />
+      <Player PlayerID="64118ef5-3784-4344-9c2f-9eb9cf92bbb3" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="dfe021ec-5540-4c82-9984-5e22ef77c2e6" />
+      <Player PlayerID="c08dbed5-a5a0-4ea1-b169-5b109e7814d0" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="05577d15-f195-4b9b-8d19-33531e08b21e" />
+      <Player PlayerID="b3b6bd09-e9e3-451b-95a6-8176d5f8d21f" />
+    </Pairing>
+    <Pairing PointsWhite="0.5" PointsBlack="0.5" IsFreePoint="False">
+      <Player PlayerID="20827935-3492-4750-808a-17c0867d9508" />
+      <Player PlayerID="66951e57-5f6b-4d35-afd5-fa783a4f0670" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="198ab55d-85aa-4f5a-aed4-260672d08807" />
+      <Player PlayerID="634ac478-e2d8-4d42-87ae-c95c311c4295" />
+    </Pairing>
+    <Pairing PointsWhite="0.5" PointsBlack="0.5" IsFreePoint="False">
+      <Player PlayerID="f03f2a25-7aef-479f-9480-55329d7b838a" />
+      <Player PlayerID="4fc07d37-4930-4b2b-846a-fda60657d97f" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="81a2c929-46bf-4985-ad07-14c5b0de80bb" />
+      <Player PlayerID="ec6f04b1-6c8d-4fef-8e42-523d6ee1560d" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="ddb68730-59f2-4a04-804b-d8ee77dbd6ff" />
+      <Player PlayerID="f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1" />
+    </Pairing>
+  </Round>
+  <Round Rounde="4">
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="c08dbed5-a5a0-4ea1-b169-5b109e7814d0" />
+      <Player PlayerID="dc7f892f-1f98-4698-a419-ae4f5cb3063d" />
+    </Pairing>
+    <Pairing PointsWhite="0.5" PointsBlack="0.5" IsFreePoint="False">
+      <Player PlayerID="64118ef5-3784-4344-9c2f-9eb9cf92bbb3" />
+      <Player PlayerID="b3b6bd09-e9e3-451b-95a6-8176d5f8d21f" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="66951e57-5f6b-4d35-afd5-fa783a4f0670" />
+      <Player PlayerID="dfe021ec-5540-4c82-9984-5e22ef77c2e6" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="634ac478-e2d8-4d42-87ae-c95c311c4295" />
+      <Player PlayerID="20827935-3492-4750-808a-17c0867d9508" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="ec6f04b1-6c8d-4fef-8e42-523d6ee1560d" />
+      <Player PlayerID="05577d15-f195-4b9b-8d19-33531e08b21e" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="f03f2a25-7aef-479f-9480-55329d7b838a" />
+      <Player PlayerID="81a2c929-46bf-4985-ad07-14c5b0de80bb" />
+    </Pairing>
+    <Pairing PointsWhite="0" PointsBlack="1" IsFreePoint="False">
+      <Player PlayerID="4fc07d37-4930-4b2b-846a-fda60657d97f" />
+      <Player PlayerID="f6a4ad62-aab9-45b7-a82e-afcff7bbf6d1" />
+    </Pairing>
+    <Pairing PointsWhite="1" PointsBlack="0" IsFreePoint="False">
+      <Player PlayerID="198ab55d-85aa-4f5a-aed4-260672d08807" />
+      <Player PlayerID="ddb68730-59f2-4a04-804b-d8ee77dbd6ff" />
+    </Pairing>
+  </Round>
+</Test>

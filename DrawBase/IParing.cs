@@ -32,5 +32,10 @@ namespace DrawBase
     /// Information about the played game is a Bye (free point)
     /// </summary>
     public bool IsFreePoint { get; set; }
+
+    /// <summary>
+    /// Number of the pairing in the round.
+    /// </summary>
+    public int PairingNumber { get; set; }
   }
 }

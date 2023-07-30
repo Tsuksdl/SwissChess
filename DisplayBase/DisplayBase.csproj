@@ -4,10 +4,14 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Display Base</Title>
+    <Authors>Fritz Niemann</Authors>
+    <Description>Basic Interfaces to hold all information to be shown to the user.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DrawBase\DrawBase.csproj" />
+    <PackageReference Include="DrawBase" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

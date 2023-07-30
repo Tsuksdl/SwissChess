@@ -1,18 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
+	  <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Configurations>Debug;Release;TestRun</Configurations>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <StartupObject>Test_SwissChessDraw.TestSwissDrawing</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.2" />
+    <None Remove="TestCases\TestLoadPlayer.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit.Console" Version="3.16.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="SWT-Converter" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +27,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="TestCases\TestLoadPlayer.xml">
+    <Resource Include="TestCases\TestLoadPlayer.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestCases\Duathlon.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -11,7 +11,13 @@
     /// Methode to load the information from a XML file.
     /// </summary>
     /// <param name="reader">Object with the open XML file</param>
-    public void LoadInformation(XMLReader reader);
+    internal void Load(XMLReader reader, object? args);
+
+    /// <summary>
+    /// Methode to write the information of the object in a XML-file.
+    /// </summary>
+    /// <param name="saver"> Saver with the open XML-Dokument. </param>
+    internal bool Save(XMLSaver saver, object? args);
 
     #endregion Public Methods
   }

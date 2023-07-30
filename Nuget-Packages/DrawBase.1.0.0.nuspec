@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>DrawBase</id>
+    <version>1.0.0</version>
+    <title>DrawBase</title>
+    <authors>Fritz Niemann</authors>
+    <description>Base Interfaces for holding all information needed to draw a new round for a tournement. Including the turnement it self.</description>
+    <copyright>GPL</copyright>
+    <dependencies>
+      <group targetFramework="net6.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\fritz\SwissChess\DrawBase\bin\Debug\net6.0\DrawBase.dll" target="lib\net6.0\DrawBase.dll" />
+  </files>
+</package>

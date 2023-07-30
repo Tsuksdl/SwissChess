@@ -3,17 +3,8 @@ using SwissChessDraw;
 
 namespace Test_SwissChessDraw.TestClasses
 {
-  internal class TestRound : IXMLObjekt
+  internal class TestRound : IRoundBase, IXMLObjekt
   {
-    #region Private Fields
-
-    /// <summary>
-    /// Internal list of pairings to load them in.
-    /// </summary>
-    private IList<Pairing> _pairings;
-
-    #endregion Private Fields
-
     #region Public Constructors
 
     /// <summary>
@@ -21,25 +12,41 @@ namespace Test_SwissChessDraw.TestClasses
     /// </summary>
     public TestRound()
     {
-      _pairings = new List<Pairing>();
-      Round = 0;
+      Pairings = new List<IPairing>();
+      Rounde = 0;
+      Name = string.Empty;
+      Date = string.Empty;
+    }
+
+    public TestRound(IRoundBase round) : this()
+    {
+      foreach(IPairing paring in round.Pairings)
+      {
+        Pairings.Add(new Pairing(paring));
+      }
+      Name = round.Name;
+      Date = round.Date;
+      RoundFinished = round.RoundFinished;
+      Stage = round.Stage;
     }
 
     #endregion Public Constructors
 
-    #region Public Properties
-
-    /// <summary>
-    /// Public Property to access the pairings of this round
-    /// </summary>
-    public IList<Pairing> Pairings => _pairings;
+    #region Properties
 
     /// <summary>
     /// Count of the round.
     /// </summary>
-    public int Round { get; set; }
+    public int Rounde { get; set; }
+    public int Stage { get; set; }
+    public string Name { get; set; }
+    public bool RoundFinished { get; set; }
+    public int tl_ok { get; set; }
+    public string Date { get; set; }
 
-    #endregion Public Properties
+    public List<IPairing> Pairings { get; set; }
+
+    #endregion Properties
 
     #region Public Methods
 
@@ -60,90 +67,174 @@ namespace Test_SwissChessDraw.TestClasses
       return base.Equals(obj);
     }
 
-    /// <inheritdoc/>
-    public void LoadInformation(XMLReader reader)
+    public override int GetHashCode()
     {
-      if (reader.ReadAttribute(nameof(Round)) is string roundString)
-      {
-        Round = int.Parse(roundString);
-      }
+      return base.GetHashCode();
+    }
 
-      if (_pairings != null)
-      {
-        reader.ReadList<Pairing>(ref _pairings, "Pairing");
+    /// <inheritdoc/>
+    public void Load(XMLReader reader, object? args)
+    {
+      if (args is Dictionary<Guid, IPlayerData> playerDic)
+      { 
+        if (reader.ReadAttribute(nameof(Rounde)) is string roundString)
+        {
+          Rounde = int.Parse(roundString);
+        }
+
+        if (Pairings != null)
+        {
+          IList<Pairing> tmpList = new List<Pairing>();
+          reader.ReadList<Pairing>(ref tmpList, playerDic, "Pairing");
+          Pairings = tmpList.Cast<IPairing>().ToList();
+        }
       }
     }
+
+    public void OrderPairings()
+    {
+      Pairings = Pairings.OrderBy(n => n.PairingNumber).ToList();
+    }
+
+    public bool Save(XMLSaver saver, object? args)
+    {
+      bool result = false;
+      if (saver.CreateNewNode("Round", true))
+      {
+        result = true;
+        foreach (Pairing p in Pairings)
+        {
+          result &= p.Save(saver, null);
+        }
+        result &= saver.WriteAtribute(nameof(Rounde), Rounde.ToString());
+        result &= saver.MoveToParent();
+      }
+      return result;
+    }
+
+    #endregion Public Methods
+
+    #region Internal Methods
 
     /// <summary>
     /// Mathode to apply the points of this round. Color and Floatings should be set by drawingsystem.
     /// </summary>
     internal void ApplyPoint()
     {
-      foreach (Pairing pairing in _pairings)
+      foreach (Pairing pairing in Pairings)
       {
         pairing.PlayerWhite.Points += pairing.PointsWhite;
         pairing.PlayerBlack.Points += pairing.PointsBlack;
       }
     }
 
-    #endregion Public Methods
+    #endregion Internal Methods
 
-    #region Public Classes
+    #region Classes
 
     /// <summary>
     /// Internal Class to hold the information about on pairing of the round.
     /// </summary>
-    public class Pairing : IXMLObjekt, IPairing
+    public class Pairing : IPairing, IXMLObjekt
     {
-      #region Public Properties
+      #region Public Constructors
 
-      public bool IsFreePoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+      public Pairing()
+      {
+        PlayerBlack = new TestPlayer();
+        PlayerWhite = new TestPlayer();
+      }
 
-      public IPlayerData PlayerBlack { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+      public Pairing(IPairing pairing)
+      {
+        PlayerWhite = new TestPlayer(pairing.PlayerWhite);
+        PlayerBlack = new TestPlayer(pairing.PlayerBlack);
+        IsFreePoint = pairing.IsFreePoint;
+        PairingNumber = pairing.PairingNumber;
+        PointsWhite = pairing.PointsWhite;
+        PointsBlack = pairing.PointsBlack;
+      }
 
-      public IPlayerData PlayerWhite { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+      #endregion Public Constructors
 
-      public float PointsBlack { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+      #region Properties
 
-      public float PointsWhite { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+      public bool IsFreePoint { get; set; }
 
-      #endregion Public Properties
+      public int PairingNumber { get; set; }
+
+      public IPlayerData PlayerBlack { get; set; }
+
+      public IPlayerData PlayerWhite { get; set; }
+
+      public float PointsBlack { get; set; }
+
+      public float PointsWhite { get; set; }
+
+      #endregion Properties
 
       #region Public Methods
 
       /// <inheritdoc/>
-      public void LoadInformation(XMLReader reader)
+      public void Load(XMLReader reader, object? args)
       {
-        IList<TestPlayer> pairing = new List<TestPlayer>();
-        reader.ReadList<TestPlayer>(ref pairing, "Player");
-
-        if (pairing.Count != 2)
+        if (args is Dictionary<Guid, IPlayerData> playerDic)
         {
-          return;
+          IList<TestPlayer> pairing = new List<TestPlayer>();
+          reader.ReadList<TestPlayer>(ref pairing, true, "Player");
+
+          if (pairing.Count != 2 || !playerDic.ContainsKey(pairing[0].PlayerID) || !playerDic.ContainsKey(pairing[1].PlayerID))
+          {
+            return;
+          }
+
+          PlayerWhite = playerDic[pairing[0].PlayerID];
+          PlayerBlack = playerDic[pairing[1].PlayerID];
+
+          if (reader.ReadAttribute(nameof(PointsWhite)) is string pointsWhiteString)
+          {
+            PointsWhite = float.Parse(pointsWhiteString);
+          }
+
+          if (reader.ReadAttribute(nameof(PointsBlack)) is string pointsBlackString)
+          {
+            PointsBlack = float.Parse(pointsBlackString);
+          }
+
+          if (reader.ReadAttribute(nameof(IsFreePoint)) is string isFreePointString)
+          {
+            IsFreePoint = bool.Parse(isFreePointString);
+          }
         }
+      }
 
-        PlayerWhite = pairing[0];
-        PlayerBlack = pairing[1];
-
-        if (reader.ReadAttribute(nameof(PointsWhite)) is string pointsWhiteString)
+      public bool Save(XMLSaver saver, object? args)
+      {
+        bool result = false;
+        if (saver.CreateNewNode("Pairing", true))
         {
-          PointsWhite = float.Parse(pointsWhiteString);
-        }
+          result = true;
+          if (PlayerWhite is IXMLObjekt xmlPlayerWhite)
+          {
+            result &= xmlPlayerWhite.Save(saver, true);
+          }
 
-        if (reader.ReadAttribute(nameof(PointsBlack)) is string pointsBlackString)
-        {
-          PointsBlack = float.Parse(pointsBlackString);
-        }
+          if (PlayerBlack is IXMLObjekt xmlPLayerBlack)
+          {
+            result &= xmlPLayerBlack.Save(saver, true);
+          }
 
-        if (reader.ReadAttribute(nameof(IsFreePoint)) is string isFreePointString)
-        {
-          IsFreePoint = bool.Parse(isFreePointString);
+          result &= saver.WriteAtribute(nameof(PointsWhite), PointsWhite.ToString());
+          result &= saver.WriteAtribute(nameof(PointsBlack), PointsBlack.ToString());
+          result &= saver.WriteAtribute(nameof(IsFreePoint), IsFreePoint.ToString());
+          result &= saver.MoveToParent();
         }
+        return result;
       }
 
       #endregion Public Methods
     }
 
-    #endregion Public Classes
+    #endregion Classes
   }
 }

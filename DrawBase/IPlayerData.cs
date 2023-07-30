@@ -1,4 +1,4 @@
-﻿namespace SwissChessDraw
+﻿namespace DrawBase
 {
   /// <summary>
   /// Base interface to hold the needed information for the drawing of one round.

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWT-Converter", "SWT-Converter\SWT-Converter.csproj", "{936762F9-8F8B-4925-91AB-199F1F81D37E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWT-Converter", "SWT-Converter\SWT-Converter\SWT-Converter.csproj", "{936762F9-8F8B-4925-91AB-199F1F81D37E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrawBase", "..\DrawBase\DrawBase.csproj", "{79D3674E-6573-4CE6-8A39-85FF32FCB619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrawBase", "DrawBase\DrawBase.csproj", "{79D3674E-6573-4CE6-8A39-85FF32FCB619}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisplayBase", "..\DisplayBase\DisplayBase.csproj", "{27CF2DD3-4414-403E-AF3B-3D80B397D4E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisplayBase", "DisplayBase\DisplayBase.csproj", "{27CF2DD3-4414-403E-AF3B-3D80B397D4E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

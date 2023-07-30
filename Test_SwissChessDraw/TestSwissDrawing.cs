@@ -1,14 +1,57 @@
 ﻿using DrawBase;
 using NUnit.Framework;
+using NUnit.Framework.Internal.Execution;
 using SwissChessDraw;
 using System.Reflection;
 using Test_SwissChessDraw.TestClasses;
+using SWT_Converter;
 
 namespace Test_SwissChessDraw
 {
   [TestFixture]
   internal class TestSwissDrawing
   {
+    public static void Main(string[] args)
+    {
+      Thread thread = new Thread(() =>
+      {
+        OpenFileDialog openSWTDialog = new OpenFileDialog();
+        openSWTDialog.Filter = "SWT-FIle *.SWT| *.SWT;*.swt";
+        if (openSWTDialog.ShowDialog() == DialogResult.OK)
+        {
+          string path = openSWTDialog.FileName;
+          try
+          {
+            SWTTurnament turnament = new SWTTurnament(path, new TestObjectGenerator());
+            XMLSaver saver = new XMLSaver();
+            saver.CreateNewNode("Test", true);
+            foreach (TestPlayer player in turnament.PlayerData)
+            {
+              player.Save(saver, false);
+            }
+
+            foreach (TestRound round in turnament.Rounds)
+            {
+              round.Save(saver, null);
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "XML-File *.xml | *.xml";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+              saver.Save(saveFileDialog.FileName);
+            }
+          }
+          catch
+          { }
+        }
+      });
+
+      thread.SetApartmentState(ApartmentState.STA);
+      thread.Start();
+      thread.Join();
+    }
+
     /// <summary>
     /// Reads all possible Test from a Folder.
     /// </summary>
@@ -52,12 +95,11 @@ namespace Test_SwissChessDraw
       IList<TestPlayer> playerDatas = new List<TestPlayer>();
       XMLReader reader = new XMLReader();
       Assert.IsTrue(reader.OpenFile(testFileName[1]));
-      reader.ReadList<TestPlayer>(ref playerDatas, "Player");
-      Dictionary<Guid, TestPlayer> playerDic = playerDatas.ToDictionary(p => p.PlayerID, p => p);
-      Assert.That(playerDatas.Count, Is.EqualTo(15));
+      reader.ReadList<TestPlayer>(ref playerDatas, false, "Player");
+      Dictionary<Guid, IPlayerData> playerDic = playerDatas.ToDictionary(p => p.PlayerID, p => (IPlayerData)p);
 
       IList<TestRound> rounds = new List<TestRound>();
-      reader.ReadList<TestRound>(ref rounds, "Round");
+      reader.ReadList<TestRound>(ref rounds, playerDic, "Round");
       Assert.That(rounds.Any(), Is.True);
 
       for (int i = 0; i < rounds.Count; i++)

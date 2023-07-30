@@ -4,6 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>DrawBase</Title>
+    <Authors>Fritz Niemann</Authors>
+    <Description>Base Interfaces for holding all information needed to draw a new round for a tournement. Including the turnement it self.</Description>
+    <Copyright>GPL</Copyright>
   </PropertyGroup>
 
 </Project>
