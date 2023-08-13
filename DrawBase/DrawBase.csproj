@@ -9,6 +9,7 @@
     <Authors>Fritz Niemann</Authors>
     <Description>Base Interfaces for holding all information needed to draw a new round for a tournement. Including the turnement it self.</Description>
     <Copyright>GPL</Copyright>
+	<Version>1.0.2</Version>
   </PropertyGroup>
 
 </Project>

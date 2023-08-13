@@ -1,8 +1,6 @@
-﻿using SwissChessDraw;
-
-namespace DrawBase
+﻿namespace DrawBase
 {
-  public interface ITurnamentBase
+  public interface ITournamentBase
   {
     int CurrentRound { get; set; }
     int CurrentStage { get; set; }

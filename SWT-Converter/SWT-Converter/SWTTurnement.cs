@@ -1,9 +1,8 @@
 ﻿using DrawBase;
-using SwissChessDraw;
 
 namespace SWT_Converter
 {
-  public class SWTTurnament : ITurnamentBase
+  public class SWTTurnament : ITournamentBase
   {
     IObjectCreator _objectCreator;
 

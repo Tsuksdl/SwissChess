@@ -1,4 +1,5 @@
 ﻿using DisplayBase;
+using DrawBase;
 using SwissChessDraw;
 
 namespace Test_SwissChessDraw.TestClasses

@@ -11,11 +11,11 @@
     <Company>Fritz Niemann</Company>
     <Copyright>GPL</Copyright>
     <Description>Reader and converter for SWT-Files to DrawBase-Data </Description>
-	<VersionPrefix>1.0.2</VersionPrefix>
+	<VersionPrefix>1.0.2.2</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DisplayBase" Version="1.0.0" />
+    <PackageReference Include="DisplayBase" Version="1.0.2" />
   </ItemGroup>
 
 </Project>

@@ -8,10 +8,11 @@
     <Title>Display Base</Title>
     <Authors>Fritz Niemann</Authors>
     <Description>Basic Interfaces to hold all information to be shown to the user.</Description>
+	<Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DrawBase" Version="1.0.0" />
+    <PackageReference Include="DrawBase" Version="1.0.2" />
   </ItemGroup>
 
 </Project>

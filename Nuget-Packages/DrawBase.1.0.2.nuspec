@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>DrawBase</id>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <title>DrawBase</title>
     <authors>Fritz Niemann</authors>
     <description>Base Interfaces for holding all information needed to draw a new round for a tournement. Including the turnement it self.</description>

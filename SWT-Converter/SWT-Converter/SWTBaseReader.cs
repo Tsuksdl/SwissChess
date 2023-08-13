@@ -1,6 +1,5 @@
 ﻿using DisplayBase;
 using DrawBase;
-using SwissChessDraw;
 
 namespace SWT_Converter
 {
@@ -92,7 +91,7 @@ namespace SWT_Converter
       return result;
     }
 
-    internal List<IRoundBase> ReadPairings(ITurnamentBase turnamentBase, IObjectCreator objectCreator, List<IPlayerData> playerData)
+    internal List<IRoundBase> ReadPairings(ITournamentBase turnamentBase, IObjectCreator objectCreator, List<IPlayerData> playerData)
     {
       List<IRoundBase> result = new List<IRoundBase>();
 
@@ -186,7 +185,7 @@ namespace SWT_Converter
     /// Position to start reading the player. The offset is moved to the next player after finishing reading.
     /// </param>
     /// <returns>A new player object with the read data from the file if possible.</returns>
-    internal IDisplayPlayerData ReadPlayer(ITurnamentBase turnamentBase, IObjectCreator objectCreator, ref int offset)
+    internal IDisplayPlayerData ReadPlayer(ITournamentBase turnamentBase, IObjectCreator objectCreator, ref int offset)
     {
       IDisplayPlayerData player = objectCreator.CreateDisplayPlayerObject();
 

@@ -101,10 +101,11 @@ namespace Test_SwissChessDraw
       IList<TestRound> rounds = new List<TestRound>();
       reader.ReadList<TestRound>(ref rounds, playerDic, "Round");
       Assert.That(rounds.Any(), Is.True);
+      TestTournament testTournament = new TestTournament(rounds.Count);
 
       for (int i = 0; i < rounds.Count; i++)
       {
-        List<IPairing> roundParings = drawSystem.CreateNewRound(playerDic.ToList().Select(p => p.Value as IPlayerData).ToList());
+        List<IPairing> roundParings = drawSystem.CreateNewRound(playerDic.ToList().Select(p => p.Value).ToList(), testTournament);
         Assert.That(rounds[i].Equals(roundParings), Is.True);
         rounds[i].ApplyPoint();
       }

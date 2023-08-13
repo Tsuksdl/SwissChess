@@ -1,6 +1,5 @@
 ﻿using DisplayBase;
 using DrawBase;
-using SwissChessDraw;
 
 namespace SWT_Converter
 {

@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>DisplayBase</id>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <title>Display Base</title>
     <authors>Fritz Niemann</authors>
     <description>Basic Interfaces to hold all information to be shown to the user.</description>
     <dependencies>
       <group targetFramework="net6.0">
-        <dependency id="DrawBase" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="DrawBase" version="1.0.2" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>

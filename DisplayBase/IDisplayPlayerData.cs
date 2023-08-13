@@ -1,4 +1,4 @@
-﻿using SwissChessDraw;
+﻿using DrawBase;
 
 namespace DisplayBase
 {

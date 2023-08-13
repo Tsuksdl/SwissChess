@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SWT-Converter</id>
-    <version>1.0.2</version>
+    <version>1.0.2.2</version>
     <title>SWT-Converter</title>
     <authors>Fritz Niemann</authors>
     <description>Reader and converter for SWT-Files to DrawBase-Data</description>
     <copyright>GPL</copyright>
     <dependencies>
       <group targetFramework="net6.0">
-        <dependency id="DisplayBase" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="DisplayBase" version="1.0.2" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>

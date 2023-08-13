@@ -1,6 +1,4 @@
-﻿using SwissChessDraw;
-
-namespace DrawBase
+﻿namespace DrawBase
 {
   /// <summary>
   /// Base Interface for one pairing in a round. Holds the information about the two players/teams
