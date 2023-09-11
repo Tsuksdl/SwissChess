@@ -20,14 +20,9 @@ namespace SwissChessDraw
       floater.OrderBy(n => n.Key);
       playerGroups.OrderBy(n => n.Key);
 
-      MoveFloaterToNextGroup(ref floater, ref playerGroups, turnamentBase);
+      pairings = PairingsGenerator.CreatePairings(playerGroups, floater, turnamentBase, this, players.Count);
 
       return pairings;
-    }
-
-    private void MoveFloaterToNextGroup(ref Dictionary<float, List<IPlayerData>> floater, ref Dictionary<float, List<IPlayerData>> playerGroups, ITournamentBase turnamentBase)
-    {
-      float middleGroup = turnamentBase.CurrentRound / 2;
     }
 
     private Dictionary<float, List<IPlayerData>> CheckForFloaterPrePairing(Dictionary<float, List<IPlayerData>> playerGroups, ITournamentBase tournamentBase)
@@ -35,7 +30,7 @@ namespace SwissChessDraw
       Dictionary<float, List<IPlayerData>> result = new Dictionary<float, List<IPlayerData>>();
       List<Task<KeyValuePair<float, List<IPlayerData>>>> tasks = new List<Task<KeyValuePair<float, List<IPlayerData>>>>();
 
-      foreach(KeyValuePair<float, List<IPlayerData>> playerGroup in playerGroups)
+      foreach (KeyValuePair<float, List<IPlayerData>> playerGroup in playerGroups)
       {
         tasks.Add(new Task<KeyValuePair<float, List<IPlayerData>>>(() => CheckForFloaterInPlayerGroup(playerGroup.Key, playerGroup.Value, tournamentBase)));
         tasks.Last().Start();
@@ -51,8 +46,8 @@ namespace SwissChessDraw
     {
       KeyValuePair<float, List<IPlayerData>> result = new KeyValuePair<float, List<IPlayerData>>(points, new List<IPlayerData>());
       bool hasPairings = false;
-      List<IPlayerData> searchedPlayers = new List<IPlayerData> (players);
-      List<IPlayerData> avalabilePlayer = new List<IPlayerData> (players);
+      List<IPlayerData> searchedPlayers = new List<IPlayerData>(players);
+      List<IPlayerData> avalabilePlayer = new List<IPlayerData>(players);
 
       for (int i = searchedPlayers.Count - 1; i > -1; i--)
       {
@@ -88,7 +83,7 @@ namespace SwissChessDraw
       return result;
     }
 
-    private bool IsPairingPossible (IPlayerData player1, IPlayerData player2, ITournamentBase tournamentBase)
+    private bool IsPairingPossible(IPlayerData player1, IPlayerData player2, ITournamentBase tournamentBase)
     {
       // Simple case: Both player change color or get the same again.
       if (player1.LastColor != player2.LastColor)
@@ -98,7 +93,7 @@ namespace SwissChessDraw
         {
           return true;
         }
-        else if (IsPlayerColorKeepPossible(player1, tournamentBase) && IsPlayerColorKeepPossible (player2, tournamentBase))
+        else if (IsPlayerColorKeepPossible(player1, tournamentBase) && IsPlayerColorKeepPossible(player2, tournamentBase))
         {
           return true;
         }
@@ -113,19 +108,18 @@ namespace SwissChessDraw
         {
           return true;
         }
-
       }
 
       return false;
     }
 
     /// <summary>
-    /// Methode to check if a player can change the color for the next game. 
+    /// Methode to check if a player can change the color for the next game.
     /// </summary>
     /// <param name="player">Player to check</param>
     /// <param name="tournamentBase">Information about the current state of the tournament.</param>
     /// <returns></returns>
-    private bool IsPlayerColorChangePossible (IPlayerData player, ITournamentBase tournamentBase)
+    private bool IsPlayerColorChangePossible(IPlayerData player, ITournamentBase tournamentBase)
     {
       if (player.LastColor == null)
       {
@@ -139,6 +133,7 @@ namespace SwissChessDraw
 
       // Count of the remaining rounds including the on that is pair right now.
       int remainingRounds = tournamentBase.RoundCount - tournamentBase.CurrentRound;
+
       // Now pair round removed.
       remainingRounds--;
 
@@ -150,11 +145,11 @@ namespace SwissChessDraw
         {
           return true;
         }
+
         // Player ha black and would get another white, check if he can reach a good colorDiffrenz
         // under the rest of the rules
         else
         {
-          
           if (remainingRounds > 2)
           {
             return player.ColorDifferenz + 1 < 3;
@@ -179,11 +174,11 @@ namespace SwissChessDraw
         {
           return true;
         }
+
         // Player ha black and would get another white, check if he can reach a good colorDiffrenz
         // under the rest of the rules
         else
         {
-
           if (remainingRounds > 2)
           {
             return player.ColorDifferenz - 1 > -3;
@@ -212,6 +207,7 @@ namespace SwissChessDraw
 
       // Count of the remaining rounds including the on that is pair right now.
       int remainingRounds = tournamentBase.RoundCount - tournamentBase.CurrentRound;
+
       // Now pair round removed.
       remainingRounds--;
 
@@ -245,7 +241,7 @@ namespace SwissChessDraw
     {
       Dictionary<float, List<IPlayerData>> result = new Dictionary<float, List<IPlayerData>>();
 
-      foreach(IPlayerData player in players) 
+      foreach (IPlayerData player in players)
       {
         if (!result.ContainsKey(player.Points))
         {
