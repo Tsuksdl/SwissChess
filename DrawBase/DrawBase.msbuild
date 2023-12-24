@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Default" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">	
+  <Import Project="c:\bin\Build.tasks" />
+
+	<PropertyGroup>
+		<ToolsPath>c:\bin\</ToolsPath>
+		<CONFIGURATION Condition=" '$(CONFIGURATION)' == '' ">Release</CONFIGURATION>
+		<BuildTarget>winxx</BuildTarget>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<BuildNumber Condition=" '$(BUILD)' == '' ">$(BUILD_NUMBER)</BuildNumber>
+		<BuildNumber Condition=" '$(BUILD)' != '' ">$(BUILD)</BuildNumber>
+		<RevisionBase Condition=" '$(PRERELEASE)' != '' ">0</RevisionBase>			
+		<RevisionBase Condition=" '$(PRERELEASE)' == '-develop' ">100</RevisionBase>		
+		<RevisionBase Condition=" '$(PRERELEASE)' == '-release' ">200</RevisionBase>				
+		<RevisionBase Condition=" '$(PRERELEASE)' == '-hotfix' ">200</RevisionBase>				
+		<RevisionBase Condition=" '$(PRERELEASE)' == '' ">300</RevisionBase>
+		<Revision>$([MSBuild]::Add($(RevisionBase), $(BuildNumber)))</Revision>	
+	</PropertyGroup>
+
+	<PropertyGroup>		
+		<ProjectName>Hsetu.Cad</ProjectName>	
+		<VersionAssembly>$(VERSION).$(Revision)</VersionAssembly>	
+		<VersionPackage>$(VERSION)$(PRERELEASE).$(BuildNumber)</VersionPackage>
+		<VersionGitHash>$(VersionPackage)+$(GIT_COMMIT)</VersionGitHash>
+	</PropertyGroup>	
+		
+	<PropertyGroup>		
+		<SignCommand>&quot;$(ToolsPath)signtool.exe&quot; sign</SignCommand>		
+		<SignOptions>/n "Hottgenroth Software" /t http://timestamp.digicert.com /a</SignOptions>	
+		<VersionOptions>;modelVersion=$(MODEL_VERSION);fwVersion=$(FW_VERSION);hstacVersion=$(HSTAC_VERSION);wpfVersion=$(WPF_VERSION);rcVersion=$(RC_VERSION)</VersionOptions>		
+		<SymbolsOptions Condition=" '$(BUILD_SYMBOLS)' == 'true' ">-Symbols -SymbolPackageFormat snupkg</SymbolsOptions>
+		<PackCommand>&quot;$(ToolsPath)nuget.exe&quot; pack</PackCommand>		
+		<PackOptions>-OutputDirectory &quot;$(NugetPackagesPath)$(VersionPackage)&quot; -Properties version=$(VersionGitHash);configuration=$(CONFIGURATION);target=$(BuildTarget);notes=$(GIT_COMMIT)$(VersionOptions) $(SymbolsOptions)</PackOptions>		
+		<PushCommand>&quot;$(ToolsPath)nuget.exe&quot; push</PushCommand>				
+		<PushOptions> $(NugetToken) -Source $(NugetServer) -SkipDuplicate</PushOptions>		
+	</PropertyGroup>
+
+	<Target Name="Default">	
+		<CallTarget Targets="BuildParameter"/>
+		<CallTarget Targets="UpdateVersion"/>
+		<CallTarget Targets="Compile" />
+		<CallTarget Targets="Sign" />
+		<CallTarget Targets="Pack" Condition=" '$(BUILD_NUGET)'=='true' "/>
+		<CallTarget Targets="CopyToTransfer" Condition=" '$(COPY_TO_TRANSFER)'=='true' "/>
+		<CallTarget Targets="Push" Condition=" '$(PUSH_NUGET)'=='true' "/>
+	</Target>
+	
+	<Target Name="UpdateVersion">
+		<ItemGroup>
+			<CommonAssemblyInfo Include="$(CommonAssemblyInfoPath)CommonAssemblyInfo.cs">
+			    <Find>(\[assembly:\s\w+\()"(\d+\.\d+\.\d+\.\d+)"(\)\])</Find>
+				<ReplaceWith>$1"$(VersionAssembly)"$3</ReplaceWith>
+			</CommonAssemblyInfo>
+		</ItemGroup>
+		<RegexTransform Items="@(CommonAssemblyInfo)" />
+		<Message Text="Updated version $(VersionAssembly)"></Message>
+	</Target>
+	
+	<Target Name="Compile">
+		<Exec Command="&quot;$(ToolsPath)nuget.exe&quot; restore $(SolutionPath)$(ProjectName).sln" />
+		<Msbuild Projects="$(SolutionPath)$(ProjectName).sln" Properties="Configuration=$(Configuration)" />
+	</Target>
+	
+	<Target Name="Sign">
+		<ItemGroup>
+			<ContentDll Include="$(NugetContentPath)*.dll"/>     
+			<ContentDllEn Include="$(NugetContentPath)En\*.dll"/>     
+			<ContentDllJa Include="$(NugetContentPath)Ja\*.dll"/>     
+			<ContentExe Include="$(NugetContentPath)*.exe"/>     
+		</ItemGroup>
+		<Exec Command="$(SignCommand) $(SignOptions) &quot;%(ContentDll.Identity)&quot;" IgnoreExitCode="true" />
+		<Exec Command="$(SignCommand) $(SignOptions) &quot;%(ContentDllEn.Identity)&quot;" IgnoreExitCode="true" />
+		<Exec Command="$(SignCommand) $(SignOptions) &quot;%(ContentDllJa.Identity)&quot;" IgnoreExitCode="true" />
+		<Exec Command="$(SignCommand) $(SignOptions) &quot;%(ContentExe.Identity)&quot;" IgnoreExitCode="true" />
+	</Target>
+	
+    <Target Name="Pack">		
+		<ItemGroup>
+			<ContentNuspec Include="$(NuspecPath)*.nuspec"/>     
+		</ItemGroup>		
+		<Exec Command="$(PackCommand) &quot;%(ContentNuspec.Identity)&quot; $(PackOptions)" IgnoreExitCode="true" />		
+	</Target>
+	
+	<Target Name="CopyToTransfer">
+		<ItemGroup>
+			<ContentFiles Include="$(NugetContentPath)**\*.*"/>     
+			<PackageFiles Include="$(NugetPackagesPath)$(VersionPackage)\*.*"/>     
+		</ItemGroup>
+		<Copy SourceFiles="@(ContentFiles)" DestinationFolder="C:\Users\fritz\SwissChess\Nuget-Packages\$(ProjectName)\$(BUILD_NUMBER)_$(VersionPackage)\content\%(RecursiveDir)"/>		
+		<Copy SourceFiles="@(PackageFiles)" DestinationFolder="C:\Users\fritz\SwissChess\Nuget-Packages\$(ProjectName)\$(BUILD_NUMBER)_$(VersionPackage)"/>		
+	</Target>
+	
+	<Target Name="Push">
+		<ItemGroup>
+			<ContentNupkg Include="$(NugetPackagesPath)$(VersionPackage)\*.nupkg"/>     
+		</ItemGroup>		
+		<Exec Command="$(PushCommand) &quot;%(ContentNupkg.Identity)&quot; $(PushOptions)" />
+	</Target>
+	
+	<Target Name="BuildParameter">
+		<Message Text="--------------------------------------------------------------"></Message>		
+		<Message Text="  Configuration:    $(CONFIGURATION)"></Message>
+		<Message Text="  Build target:     $(BuildTarget)"></Message>
+		<Message Text="  Git branch:       $(BRANCH)"></Message>
+		<Message Text="  Git commit hash:  $(GIT_COMMIT)"></Message>			
+		<Message Text="  "></Message>		
+		<Message Text="  Project:                 $(ProjectName)"></Message>
+		<Message Text="  Version:                 $(VERSION)"></Message>
+		<Message Text="  Revision:                $(Revision)"></Message>
+		<Message Text="  Assembly version:        $(VersionAssembly)"></Message>
+		<Message Text="  Package version:         $(VersionPackage)"></Message>	
+		<Message Text="  "></Message>				
+		<Message Text="  Build NuGet packages (.nupkg):              $(BUILD_NUGET)"></Message>
+		<Message Text="  Build symbol packages (.snupkg):            $(BUILD_SYMBOLS)"></Message>
+		<Message Text="  Copy to T:\_jenkins\nuget\$(ProjectName):        $(COPY_TO_TRANSFER)"></Message>
+		<Message Text="  Push NuGet packages:                        $(PUSH_NUGET)"></Message>
+		<Message Text="--------------------------------------------------------------"></Message>		
+	</Target>	
+</Project>
