@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Default" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">	
-  <Import Project="c:\bin\Build.tasks" />
-
 	<PropertyGroup>
 		<ToolsPath>c:\bin\</ToolsPath>
 		<CONFIGURATION Condition=" '$(CONFIGURATION)' == '' ">Release</CONFIGURATION>
@@ -20,22 +18,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup>		
-		<ProjectName>Hsetu.Cad</ProjectName>	
+		<ProjectName>DrawBase</ProjectName>	
 		<VersionAssembly>$(VERSION).$(Revision)</VersionAssembly>	
 		<VersionPackage>$(VERSION)$(PRERELEASE).$(BuildNumber)</VersionPackage>
 		<VersionGitHash>$(VersionPackage)+$(GIT_COMMIT)</VersionGitHash>
 	</PropertyGroup>	
-		
-	<PropertyGroup>		
-		<SignCommand>&quot;$(ToolsPath)signtool.exe&quot; sign</SignCommand>		
-		<SignOptions>/n "Hottgenroth Software" /t http://timestamp.digicert.com /a</SignOptions>	
-		<VersionOptions>;modelVersion=$(MODEL_VERSION);fwVersion=$(FW_VERSION);hstacVersion=$(HSTAC_VERSION);wpfVersion=$(WPF_VERSION);rcVersion=$(RC_VERSION)</VersionOptions>		
-		<SymbolsOptions Condition=" '$(BUILD_SYMBOLS)' == 'true' ">-Symbols -SymbolPackageFormat snupkg</SymbolsOptions>
-		<PackCommand>&quot;$(ToolsPath)nuget.exe&quot; pack</PackCommand>		
-		<PackOptions>-OutputDirectory &quot;$(NugetPackagesPath)$(VersionPackage)&quot; -Properties version=$(VersionGitHash);configuration=$(CONFIGURATION);target=$(BuildTarget);notes=$(GIT_COMMIT)$(VersionOptions) $(SymbolsOptions)</PackOptions>		
-		<PushCommand>&quot;$(ToolsPath)nuget.exe&quot; push</PushCommand>				
-		<PushOptions> $(NugetToken) -Source $(NugetServer) -SkipDuplicate</PushOptions>		
-	</PropertyGroup>
 
 	<Target Name="Default">	
 		<CallTarget Targets="BuildParameter"/>
@@ -50,7 +37,7 @@
 	<Target Name="UpdateVersion">
 		<ItemGroup>
 			<CommonAssemblyInfo Include="$(CommonAssemblyInfoPath)CommonAssemblyInfo.cs">
-			    <Find>(\[assembly:\s\w+\()"(\d+\.\d+\.\d+\.\d+)"(\)\])</Find>
+				<Find>(\[assembly:\s\w+\()"(\d+\.\d+\.\d+\.\d+)"(\)\])</Find>
 				<ReplaceWith>$1"$(VersionAssembly)"$3</ReplaceWith>
 			</CommonAssemblyInfo>
 		</ItemGroup>
@@ -65,9 +52,7 @@
 	
 	<Target Name="Sign">
 		<ItemGroup>
-			<ContentDll Include="$(NugetContentPath)*.dll"/>     
-			<ContentDllEn Include="$(NugetContentPath)En\*.dll"/>     
-			<ContentDllJa Include="$(NugetContentPath)Ja\*.dll"/>     
+			<ContentDll Include="$(NugetContentPath)*.dll"/>       
 			<ContentExe Include="$(NugetContentPath)*.exe"/>     
 		</ItemGroup>
 		<Exec Command="$(SignCommand) $(SignOptions) &quot;%(ContentDll.Identity)&quot;" IgnoreExitCode="true" />
@@ -76,7 +61,7 @@
 		<Exec Command="$(SignCommand) $(SignOptions) &quot;%(ContentExe.Identity)&quot;" IgnoreExitCode="true" />
 	</Target>
 	
-    <Target Name="Pack">		
+	<Target Name="Pack">		
 		<ItemGroup>
 			<ContentNuspec Include="$(NuspecPath)*.nuspec"/>     
 		</ItemGroup>		
