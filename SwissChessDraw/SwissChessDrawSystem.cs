@@ -365,7 +365,7 @@ namespace SwissChessDraw
       // Laut definitionso anzuwenden.
       float middelScoreGroupe = this.CurrentTurnamentBase.RoundCount / 2;
 
-      List<IPairing> result = new List<IPairing>();
+      List<(IPlayerData playerWhite, IPlayerData playerBlack)> result = new List<(IPlayerData playerWhite, IPlayerData playerBlack)>();
 
       //TODO: Check if middlegroup is equal to %2 == 0, else extend group by given rules
 
@@ -375,9 +375,22 @@ namespace SwissChessDraw
         {
           playerGroups[scoreGroup].Sort(new PlayerRankingDataComparer());
           int middle = (int)Math.Round(playerGroups[scoreGroup].Count / 2d, MidpointRounding.ToZero);
+          List<(IPlayerData playerWhite, IPlayerData playerBlack)> pairingOfTheGroup = new List<(IPlayerData playerWhite, IPlayerData playerBlack)>();
+          bool pairingsAllowed = true;
+          int firstImpossiblePairing = 0;
           for (int playerIndex1 = 0, playerIndex2 = middle; playerIndex1 < middle; playerIndex1++, playerIndex2++)
           {
-            result.Add(new SwissChessPairing(playerGroups[scoreGroup][playerIndex1], playerGroups[scoreGroup][playerIndex2]));
+            pairingOfTheGroup.Add((playerGroups[scoreGroup][playerIndex1], playerGroups[scoreGroup][playerIndex2]));
+            if (pairingsAllowed && !this.IsPairingPossible(playerGroups[scoreGroup][playerIndex1], playerGroups[scoreGroup][playerIndex2]))
+            {
+              pairingsAllowed = false;
+              firstImpossiblePairing = pairingOfTheGroup.Count - 1;
+            }
+          }
+
+          if (!pairingsAllowed)
+          {
+            List<IPlayerData> floaterToNextGroup = SwapPairingsUp(ref pairingOfTheGroup, firstImpossiblePairing);
           }
         }
       }
@@ -388,14 +401,132 @@ namespace SwissChessDraw
         {
           playerGroups[scoreGroup].Sort(new PlayerRankingDataComparer());
           int middle = (int)Math.Round(playerGroups[scoreGroup].Count / 2d, MidpointRounding.ToZero);
+          List<IPairing> pairingOfTheGroup = new List<IPairing>();
+          bool pairingsAllowed = true;
           for (int playerIndex1 = 0, playerIndex2 = middle; playerIndex1 < middle; playerIndex1++, playerIndex2++)
           {
-            result.Add(new SwissChessPairing(playerGroups[scoreGroup][playerIndex1], playerGroups[scoreGroup][playerIndex2]));
+            pairingOfTheGroup.Add(new SwissChessPairing(playerGroups[scoreGroup][playerIndex1], playerGroups[scoreGroup][playerIndex2]));
           }
         }
       }
 
-      return result;
+      return result.Select(n => (IPairing)new SwissChessPairing(n.playerWhite, n.playerBlack)).ToList();
+    }
+
+    /// <summary>
+    /// Methode to swap the pairings to achive possible pairings;
+    /// </summary>
+    /// <param name="pairingOfTheGroup"></param>
+    /// <returns></returns>
+    private List<IPlayerData> SwapPairingsUp(ref List<(IPlayerData playerWhite, IPlayerData playerBlack)> pairingOfTheGroup, int firstImpossiblePairing)
+    {
+      List<IPlayerData> floater = new List<IPlayerData>();
+
+      bool swapWithBlack = true;
+      bool pairingFound = false;
+
+      for (int i = firstImpossiblePairing; i < pairingOfTheGroup.Count; i++)
+      {
+        if (i < pairingOfTheGroup.Count - 1)
+        {
+          SwapPlayerPairings(ref pairingOfTheGroup, firstImpossiblePairing, i, true, swapWithBlack);
+          if (IsPairingPossible(pairingOfTheGroup[firstImpossiblePairing].playerWhite, pairingOfTheGroup[firstImpossiblePairing].playerBlack))
+          {
+            pairingFound = true;
+            break;
+          }
+        }
+        else if (swapWithBlack)
+        {
+          swapWithBlack = false;
+          i = firstImpossiblePairing + 1;
+        }
+      }
+
+      if (!pairingFound)
+      {
+        bool swapFromWhite = true;
+        for (int i = firstImpossiblePairing - 1; i > -1; i--)
+        {
+          SwapPlayerPairings(ref pairingOfTheGroup, i, i + 1, true, swapFromWhite);
+          swapFromWhite = false;
+          if (IsPairingPossible(pairingOfTheGroup[i].playerWhite, pairingOfTheGroup[i].playerBlack))
+          {
+            pairingFound = true;
+            // This is important, if a play 
+            firstImpossiblePairing = i + 1;
+            break;
+          }
+        }
+      }
+
+
+      if (pairingFound)
+      {
+        for (int i = firstImpossiblePairing + 1; i < pairingOfTheGroup.Count; i++)
+        {
+          if (!IsPairingPossible(pairingOfTheGroup[i].playerWhite, pairingOfTheGroup[i].playerBlack))
+          {
+            return SwapPairingsUp(ref pairingOfTheGroup, i);
+          }
+        }
+      }
+      else
+      {
+        // TODO: Reset Pairings up to firstImpossiblePairing - 1 and mark player as floater.
+      }
+
+      return floater;
+    }
+
+    private void SwapPlayerPairings(ref List<(IPlayerData playerWhite, IPlayerData playerBlack)> pairingOfTheGroup, 
+      int firstPairing, int secoundPairing, bool firstPairngSwapBlack, bool secoundPairngSwapBlack)
+    {
+      IPlayerData tmpPlayerData;
+      (IPlayerData playerWhite, IPlayerData playerBlack) tmpPairingData;
+      if (firstPairngSwapBlack && secoundPairngSwapBlack)
+      {
+        tmpPlayerData = pairingOfTheGroup[firstPairing].playerBlack;
+        tmpPairingData = pairingOfTheGroup[firstPairing];
+        tmpPairingData.playerBlack = pairingOfTheGroup[secoundPairing].playerBlack;
+        pairingOfTheGroup[firstPairing] = tmpPairingData;
+        tmpPairingData = pairingOfTheGroup[secoundPairing];
+        tmpPairingData.playerBlack = tmpPlayerData;
+        pairingOfTheGroup[secoundPairing] = tmpPairingData;
+      }
+      else if (firstPairngSwapBlack && !secoundPairngSwapBlack)
+      {
+
+        tmpPlayerData = pairingOfTheGroup[firstPairing].playerBlack;
+        tmpPairingData = pairingOfTheGroup[firstPairing];
+        tmpPairingData.playerBlack = pairingOfTheGroup[secoundPairing].playerWhite;
+        pairingOfTheGroup[firstPairing] = tmpPairingData;
+        tmpPairingData = pairingOfTheGroup[secoundPairing];
+        tmpPairingData.playerWhite = tmpPlayerData;
+        pairingOfTheGroup[secoundPairing] = tmpPairingData;
+      }
+      else if (!firstPairngSwapBlack && secoundPairngSwapBlack)
+      {
+
+        tmpPlayerData = pairingOfTheGroup[firstPairing].playerWhite;
+        tmpPairingData = pairingOfTheGroup[firstPairing];
+        tmpPairingData.playerWhite = pairingOfTheGroup[secoundPairing].playerBlack;
+        pairingOfTheGroup[firstPairing] = tmpPairingData;
+        tmpPairingData = pairingOfTheGroup[secoundPairing];
+        tmpPairingData.playerBlack = tmpPlayerData;
+        pairingOfTheGroup[secoundPairing] = tmpPairingData;
+      }
+      else if (!firstPairngSwapBlack && !secoundPairngSwapBlack)
+      {
+
+        tmpPlayerData = pairingOfTheGroup[firstPairing].playerWhite;
+        tmpPairingData = pairingOfTheGroup[firstPairing];
+        tmpPairingData.playerWhite = pairingOfTheGroup[secoundPairing].playerWhite;
+        pairingOfTheGroup[firstPairing] = tmpPairingData;
+        tmpPairingData = pairingOfTheGroup[secoundPairing];
+        tmpPairingData.playerWhite = tmpPlayerData;
+        pairingOfTheGroup[secoundPairing] = tmpPairingData;
+      }
     }
 
     #endregion Private Methods
