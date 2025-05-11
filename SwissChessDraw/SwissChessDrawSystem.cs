@@ -363,13 +363,13 @@ namespace SwissChessDraw
     private List<IPairing> CreatePairings(Dictionary<float, List<IPlayerData>> playerGroups, Dictionary<float, List<IPlayerData>> floater, int playerCount)
     {
       // Laut definitionso anzuwenden.
-      float middelScoreGroupe = this.CurrentTurnamentBase.RoundCount / 2;
+      float middelScoreGroupe = this.CurrentTurnamentBase.CurrentRound / 2;
 
       List<(IPlayerData playerWhite, IPlayerData playerBlack)> result = new List<(IPlayerData playerWhite, IPlayerData playerBlack)>();
 
       //TODO: Check if middlegroup is equal to %2 == 0, else extend group by given rules
 
-      for (float scoreGroup = this.CurrentTurnamentBase.RoundCount; scoreGroup > middelScoreGroupe; scoreGroup -= .5f)
+      for (float scoreGroup = this.CurrentTurnamentBase.CurrentRound; scoreGroup > middelScoreGroupe; scoreGroup -= .5f)
       {
         if (playerGroups.ContainsKey(scoreGroup))
         {
@@ -392,21 +392,34 @@ namespace SwissChessDraw
           {
             List<IPlayerData> floaterToNextGroup = SwapPairingsUp(ref pairingOfTheGroup, firstImpossiblePairing);
           }
+          result.AddRange(pairingOfTheGroup);
         }
       }
 
-      for (float scoreGroup = 0; scoreGroup < middelScoreGroupe; scoreGroup += .5f)
+      for (float scoreGroup = 0; scoreGroup <= middelScoreGroupe; scoreGroup += .5f)
       {
         if (playerGroups.ContainsKey(scoreGroup))
         {
           playerGroups[scoreGroup].Sort(new PlayerRankingDataComparer());
           int middle = (int)Math.Round(playerGroups[scoreGroup].Count / 2d, MidpointRounding.ToZero);
-          List<IPairing> pairingOfTheGroup = new List<IPairing>();
+          List<(IPlayerData playerWhite, IPlayerData playerBlack)> pairingOfTheGroup = new List<(IPlayerData playerWhite, IPlayerData playerBlack)>();
           bool pairingsAllowed = true;
+          int firstImpossiblePairing = 0;
           for (int playerIndex1 = 0, playerIndex2 = middle; playerIndex1 < middle; playerIndex1++, playerIndex2++)
           {
-            pairingOfTheGroup.Add(new SwissChessPairing(playerGroups[scoreGroup][playerIndex1], playerGroups[scoreGroup][playerIndex2]));
+            pairingOfTheGroup.Add((playerGroups[scoreGroup][playerIndex1], playerGroups[scoreGroup][playerIndex2]));
+            if (pairingsAllowed && !this.IsPairingPossible(playerGroups[scoreGroup][playerIndex1], playerGroups[scoreGroup][playerIndex2]))
+            {
+              pairingsAllowed = false;
+              firstImpossiblePairing = pairingOfTheGroup.Count - 1;
+            }
           }
+
+          if (!pairingsAllowed)
+          {
+            List<IPlayerData> floaterToNextGroup = SwapPairingsUp(ref pairingOfTheGroup, firstImpossiblePairing);
+          }
+          result.AddRange(pairingOfTheGroup);
         }
       }
 

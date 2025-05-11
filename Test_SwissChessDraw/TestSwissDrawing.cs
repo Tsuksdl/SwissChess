@@ -92,7 +92,7 @@ namespace Test_SwissChessDraw
     {
       IList<TestPlayer> playerDatas = new List<TestPlayer>();
       XMLReader reader = new XMLReader();
-      Assert.IsTrue(reader.OpenFile(testFileName[1]));
+      Assert.That(reader.OpenFile(testFileName[1]));
       reader.ReadList<TestPlayer>(ref playerDatas, false, "Player");
       Dictionary<Guid, IPlayerData> playerDic = playerDatas.ToDictionary(p => p.PlayerID, p => (IPlayerData)p);
 
